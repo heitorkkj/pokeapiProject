@@ -139,9 +139,7 @@ const PokeDex = ({ data, pokeImages, setUrl }) => {
           <PokeCard key={index}>
             <PokeImage>
               <Image
-                width="auto"
-                height="auto"
-                fill
+                alt={`Image of ${element.name}`}
                 src={pokeImages[index]?.sprites?.front_default}
               ></Image>
             </PokeImage>
