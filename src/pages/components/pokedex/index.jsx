@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import icons from "../menu/typeIcons";
+import icons from "../../utils/typeIcons";
 import { useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
