@@ -1,4 +1,3 @@
-import React from "react";
 
 const icons = [
     {
@@ -97,5 +96,3 @@ const icons = [
         url: "https://codeboost.com.br/projetos/pokeapi/img/fairy.svg",
     },
 ];
-
-export default  icons;
