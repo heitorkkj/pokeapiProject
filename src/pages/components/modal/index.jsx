@@ -112,10 +112,9 @@ const Value = styled.h1`
 const PokeStats = styled.div``;
 
 const Modal = ({ isOpen, onClose, children, id, handleCloseModal }) => {
-  if (!isOpen) return null;
-
+  
   const [data, setData] = useState([]);
-
+  
   useEffect(() => {
     const getData = async () => {
       const resp = await getPokemonById(id);
@@ -123,11 +122,9 @@ const Modal = ({ isOpen, onClose, children, id, handleCloseModal }) => {
     };
     getData();
   }, [id]);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
+  
+  if (!isOpen) return null;
+  
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
