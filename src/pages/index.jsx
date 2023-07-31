@@ -1,4 +1,4 @@
-import fetcher from "@/service/api.service";
+import {fetcher} from "@/service/api.service";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useSwr from "swr";
@@ -36,7 +36,6 @@ const Home = () => {
     revalidateOnFocus: false,
   });
 
-  console.log(data)
   const [pokeImages, setPokeImages] = useState([]);
 
   useEffect(() => {
@@ -51,14 +50,13 @@ const Home = () => {
     fetchPokemonsImages();
   }, [data]);
 
-
   return (
     <Main>
       <Header>
         <MenuType />
       </Header>
       <Section>
-        <SearchBar />
+        <SearchBar setUrl={setUrl}/>
         <PokeDex data={data} pokeImages={pokeImages} setUrl={setUrl}/>
       </Section>
     </Main>

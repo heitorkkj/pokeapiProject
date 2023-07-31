@@ -1,3 +1,4 @@
+'client Server';
 import { keyframes, styled } from "styled-components";
 import useSwr from "swr";
 import fetcher from "@/service/api.service";
@@ -81,14 +82,6 @@ const IconType = styled.img`
 `;
 
 const MenuType = () => {
-  // const {
-  //   data: PokemonType,
-  //   error: TypeError,
-  //   mutate: TypeMutate,
-  //   isValidating: isValidatingError,
-  // } = useSwr(`https://pokeapi.co/api/v2/type`, fetcher, {
-  //   revalidateOnFocus: false,
-  // });
 
   return (
     <Menu>

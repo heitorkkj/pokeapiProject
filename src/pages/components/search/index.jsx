@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styled from "styled-components";
 
 const Search = styled.input`
@@ -36,14 +37,35 @@ const IconButton = styled.button`
   cursor: pointer;
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ setUrl }) => {
+  const pokemon = useRef();
+
+  const handleSearch = (e) => {
+    e.preventDefault;
+    pokemon.current = e.target.value;
+  };
+
+  const handleSearchPokemon = (e) => {
+    e.preventDefault;
+    if(pokemon.current && pokemon.current >= '0'){
+      setUrl(`https://pokeapi.co/api/v2/pokemon/${pokemon.current}`);
+    }else{
+      setUrl(`https://pokeapi.co/api/v2/pokemon`);
+    }
+  };
+
   return (
     <SearchBarElement>
       <Search
         type="search"
         placeholder="Digite o nome ou o id do pokemon"
+        onChange={(e) => handleSearch(e)}
       ></Search>
-      <IconButton />
+      <IconButton
+        onClick={(e) => {
+          handleSearchPokemon(e);
+        }}
+      />
     </SearchBarElement>
   );
 };

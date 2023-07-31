@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import icons from "../../../utils/typeIcons";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Modal from "../modal";
 
 const SectionPokemons = styled.section`
   width: 100%;
@@ -43,13 +44,21 @@ const PokeCard = styled.article`
 `;
 
 const PokeImage = styled.div`
+  width:70%;
+  height:70%;
   object-fit: fill;
   background-color: #f1f1f1;
   padding: 1rem;
   border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  max-width:65%;
+  max-height:100%;
+`;
 
 const PokeInfo = styled.article`
   width: 100%;
@@ -132,43 +141,61 @@ const PokeDex = ({ data, pokeImages, setUrl }) => {
     }
   };
 
-  return (
-    <SectionPokemons>
-      {data?.results?.map((element, index) => {
-        return (
-          <PokeCard key={index}>
-            <PokeImage>
-              <Image
-                alt={`Image of ${element.name}`}
-                src={pokeImages[index]?.sprites?.front_default}
-              ></Image>
-            </PokeImage>
-            <PokeInfo>
-              <PokeId>#{pokeImages[index]?.id}</PokeId>
-              <PokeName>{element.name}</PokeName>
+  const [showModal, setShowModal] = useState(false);
+  const [pokeId, setPokeId] = useState(0);
 
-              {icons?.map((element) => {
-                return element?.name ==
-                  pokeImages[index]?.types[0]?.type?.name ? (
-                  <IconType src={element?.url} />
-                ) : (
-                  ""
-                );
-              })}
-            </PokeInfo>
-          </PokeCard>
-        );
-      })}
-      <Pagination>
-        <Button onClick={(e) => handleChangePage(e, "previous")}>
-          <FaChevronLeft />
-        </Button>
-        <span>{currentPage.current}</span>
-        <Button onClick={(e) => handleChangePage(e, "next")}>
-          <FaChevronRight />
-        </Button>
-      </Pagination>
-    </SectionPokemons>
+  const handleOpenModal = (id) => {
+    setShowModal(true);
+    setPokeId(id);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setPokeId(0);
+  };
+
+  return (
+    <>
+      <SectionPokemons>
+        {data?.results?.map((element, index) => {
+          return (
+            <PokeCard key={index} onClick={()=>handleOpenModal(pokeImages[index]?.id)}>
+              <PokeImage>
+                <Image
+                  alt={`Image of ${element.name}`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokeImages[index]?.id}.svg`}
+                ></Image>
+              </PokeImage>
+              <PokeInfo>
+                <PokeId>#{pokeImages[index]?.id}</PokeId>
+                <PokeName>{element.name}</PokeName>
+
+                {icons?.map((element) => {
+                  return element?.name ==
+                    pokeImages[index]?.types[0]?.type?.name ? (
+                    <IconType src={element?.url} />
+                  ) : (
+                    ""
+                  );
+                })}
+              </PokeInfo>
+            </PokeCard>
+          );
+        })}
+        <Pagination>
+          <Button onClick={(e) => handleChangePage(e, "previous")}>
+            <FaChevronLeft />
+          </Button>
+          <span>{currentPage.current}</span>
+          <Button onClick={(e) => handleChangePage(e, "next")}>
+            <FaChevronRight />
+          </Button>
+        </Pagination>
+      </SectionPokemons>
+
+      <Modal isOpen={showModal} onClose={handleCloseModal} id={pokeId} handleCloseModal={handleCloseModal}>
+      </Modal>
+    </>
   );
 };
 
