@@ -24,7 +24,8 @@ const SectionPokemons = styled.section`
 
 const PokeCard = styled.article`
   width: 25%;
-  height: 15rem;
+  max-width: 23rem;
+  height: 16rem;
   padding: 1rem;
 
   box-shadow: 0 0 2rem 0.1rem #efefef;
@@ -46,6 +47,7 @@ const PokeCard = styled.article`
 const PokeImage = styled.div`
   width:70%;
   height:70%;
+  max-width: 40rem;
   object-fit: fill;
   background-color: #f1f1f1;
   padding: 1rem;

@@ -39,6 +39,7 @@ const ModalHeader = styled.div`
 `;
 const ModalContent = styled.div`
   width: 45%;
+  max-width:56rem;
   height: 90%;
   background-color: #fff;
   border-radius: 5px;

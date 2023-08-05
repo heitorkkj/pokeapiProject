@@ -1,7 +1,5 @@
 'client Server';
 import { keyframes, styled } from "styled-components";
-import useSwr from "swr";
-import fetcher from "@/service/api.service";
 import icons from "../../../utils/typeIcons";
 
 const floatAnimation = keyframes`

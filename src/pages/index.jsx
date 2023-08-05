@@ -24,6 +24,7 @@ const Section = styled.section`
 
 const Header = styled.header`
   width: 20%;
+  max-width: 20rem;
 `;
 
 
